@@ -3,6 +3,7 @@ package ir.balad.musicplayer.entity
 import ir.balad.musicplayer.exception.IllegalOperationException
 import ir.balad.musicplayer.exception.IllegalQueueSizeException
 import ir.balad.musicplayer.exception.NotPremiumUserException
+import org.jetbrains.annotations.TestOnly
 
 
 /**
@@ -101,5 +102,15 @@ class Player {
             getPlayingMusic() ?: throw IllegalOperationException("No music is playing")
 
         musicQueue.add(musicQueue.indexOf(playingMusic).plus(1), music)
+    }
+
+    /* Test Only functions */
+
+    @TestOnly
+    fun getMusicQueue() = musicQueue
+
+    @TestOnly
+    fun setMusicQueue(queue: MutableList<Music>) {
+        musicQueue = queue
     }
 }
