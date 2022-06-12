@@ -11,9 +11,9 @@ import ir.balad.musicplayer.exception.IllegalOperationException
 data class Music(
     val id: String,
     /** playing state of the music  */
-    var state: MusicState,
+    var state: MusicState = MusicState.STOPPED,
     /** the time the music will be played from that in milliseconds */
-    var duration: Long
+    var duration: Long = 0L
 ) {
 
     enum class MusicState {
