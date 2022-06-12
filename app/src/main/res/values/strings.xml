@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">BaladInterviewTask</string>
+
+<string name="app_name">BaladInterviewTask</string>
+    <string name="header">Header</string>
 </resources>
