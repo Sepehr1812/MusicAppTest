@@ -1,6 +1,31 @@
 # BaladInterviewTask
 
-Balad Interview Android Task; a simple list with different numbers of cells on each row.
+Balad Interview Android Task; a simple list with different numbers of cells on each row that represents an implemented Music Player.
+
+## Music Player Descriptions
+Music Player is implemented by three entities:
+* User: That represents the operator user of MusicPlayer.
+* Music: That represents musics that are used in MusicPlayer.
+* Player: Represents the MusicPlayer operations.
+
+**User** just has a property named _type_ that represents type of user whether REGULAR or PREMIUM.<br>
+**Music** has three properties: _id_ that assigns an ID to each music and is used for identification, _state_ that holds playing state of the music whether PLAYING or STOPPED, and _duration_ that holds the music playback time in milliseconds.<br>
+**Player** has one property: _musicQueue_ that holds Music Queue of the player.
+
+Also, there are three classes of Exceptions:
+* IllegalOperationException: Is thrown when user wants to do a not-allowed operation in MusicPlayer; e.g. pausing a music that is already paused.
+* IllegalQueueSizeException: Is thrown when user wants to use a queue with a not-allowed size.
+* NotPremiumUserException: Is thrown when a Regular User wants to use a Premium-Only feature.
+
+Four classes test MusicPlayer functionalities by **_JUnit5_**:
+* PlayerRegularUserTest: Tests user type depended features with a Regular User.
+* PlayerPremiumUserTest: Tests user type depended features with a Premium User.
+* PlayerGeneralTest: It is a Test Suite that tests general features of th Player, independent from user type.
+* Tests all these three Test classes, It covers functionalities of Player entity.
+
+Some of these classes have some functions that their functionalities seem obvious from their documentation or names.
+
+I'll be happy to hear from you if you have any questions.
 
 ## Getting started
 
