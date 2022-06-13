@@ -124,7 +124,7 @@ class Player {
     }
 
     /**
-     * Resumes a music.
+     * Resumes a music and stops now playing music in the queue if there is any.
      *
      * @param music the music user wants to resume.
      *
@@ -134,6 +134,7 @@ class Player {
         if (musicQueue.contains(music).not())
             throw IllegalOperationException("Music queue does not contain this music")
 
+        getPlayingMusic()?.stop()
         return music.resume()
     }
 
