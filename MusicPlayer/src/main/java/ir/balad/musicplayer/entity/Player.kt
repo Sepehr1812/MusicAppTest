@@ -51,6 +51,7 @@ class Player {
 
     /**
      * Stops the current playing music and plays the next one in the queue.
+     *  Does nothing if there is no next music in the queue.
      *
      * @throws IllegalOperationException if no music was playing right now.
      * @return the next [Music] in the queue, or `null` if there is no next music.
@@ -59,13 +60,16 @@ class Player {
         val playingMusic =
             getPlayingMusic() ?: throw IllegalOperationException("No music is playing")
 
-        playingMusic.stop()
 
-        return musicQueue.getOrNull(musicQueue.indexOf(playingMusic).plus(1))?.apply { resume() }
+        return musicQueue.getOrNull(musicQueue.indexOf(playingMusic).plus(1))?.apply {
+            playingMusic.stop()
+            resume()
+        }
     }
 
     /**
      * Stops the current playing music and plays the previous one in the queue.
+     *  Does nothing if there is no previous music in the queue.
      *
      * @param user the operator user.
      *
@@ -80,9 +84,10 @@ class Player {
         val playingMusic =
             getPlayingMusic() ?: throw IllegalOperationException("No music is playing")
 
-        playingMusic.stop()
-
-        return musicQueue.getOrNull(musicQueue.indexOf(playingMusic).minus(1))?.apply { resume() }
+        return musicQueue.getOrNull(musicQueue.indexOf(playingMusic).minus(1))?.apply {
+            playingMusic.stop()
+            resume()
+        }
     }
 
     /**

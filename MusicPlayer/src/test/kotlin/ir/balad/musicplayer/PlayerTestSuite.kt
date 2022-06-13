@@ -6,4 +6,4 @@ import org.junit.platform.suite.api.Suite
 
 @SelectPackages("ir.balad.musicplayer.player")
 @Suite
-class PlayerTestSuite
+internal class PlayerTestSuite

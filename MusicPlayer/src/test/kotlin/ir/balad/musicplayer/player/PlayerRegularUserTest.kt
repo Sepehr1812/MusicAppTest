@@ -9,6 +9,12 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
+
+/**
+ * Tests user type depended features with a Regular User.
+ *
+ * @author Sepi 6/13/22
+ */
 internal class PlayerRegularUserTest {
 
     private lateinit var player: Player
@@ -21,7 +27,7 @@ internal class PlayerRegularUserTest {
     }
 
     @Test
-    fun replace_smallMusicListRegularUser_IllegalQueueSizeExceptionThrows() {
+    fun replace_smallMusicListRegularUser_IllegalQueueSizeExceptionThrew() {
         // create music queue
         val musicList = mutableListOf<Music>()
         repeat(4) { musicList.add(Music(it.toString())) }
@@ -48,7 +54,7 @@ internal class PlayerRegularUserTest {
     }
 
     @Test
-    fun previous_playPreviousMusicRegularUser_NotPremiumUserExceptionThrows() {
+    fun previous_playPreviousMusicRegularUser_NotPremiumUserExceptionThrew() {
         // create music queue and play one of them
         val musicList = mutableListOf<Music>()
         repeat(5) { musicList.add(Music(it.toString())) }
@@ -61,7 +67,7 @@ internal class PlayerRegularUserTest {
     }
 
     @Test
-    fun addToQueue_addToQueueMusicRegularUser_NotPremiumUserExceptionThrows() {
+    fun addToQueue_addToQueueMusicRegularUser_NotPremiumUserExceptionThrew() {
         // create music queue and play one of them
         val musicList = mutableListOf<Music>()
         repeat(5) { musicList.add(Music(it.toString())) }
