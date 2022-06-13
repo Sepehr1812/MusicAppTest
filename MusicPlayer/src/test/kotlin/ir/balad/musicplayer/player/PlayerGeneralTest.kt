@@ -183,4 +183,75 @@ internal class PlayerGeneralTest {
         )
         assertNull(nextMusic, "Next - next music was not null")
     }
+
+    @Test
+    fun getPlayingMusic_getPlayingMusicWhenNoMusicIsPlaying_nullReturned() {
+        // create music queue
+        val musicList = mutableListOf<Music>()
+        repeat(5) { musicList.add(Music(it.toString())) }
+        player.setMusicQueue(musicList)
+
+        assertNull(player.getPlayingMusic())
+    }
+
+    @Test
+    fun getPlayingMusic_getPlayingMusicWhenMusicQueueIsEmpty_nullReturned() {
+        assertNull(player.getPlayingMusic())
+    }
+
+    @Test
+    fun getPlayingMusic_getPlayingMusicWhenAMusicIsPlaying_musicReturned() {
+        // create music queue and play one of them
+        val musicList = mutableListOf<Music>()
+        repeat(5) { musicList.add(Music(it.toString())) }
+        player.setMusicQueue(musicList)
+        val nowPlayingMusic = player.getMusicQueue()[2].apply { resume() }
+
+        assertEquals(
+            nowPlayingMusic,
+            player.getPlayingMusic()
+        )
+    }
+
+    @Test
+    fun getNextMusicQueue_getNextMusicQueueWhenNoMusicPlaying_wholeQueueReturned() {
+        // create music queue
+        val musicList = mutableListOf<Music>()
+        repeat(5) { musicList.add(Music(it.toString())) }
+        player.setMusicQueue(musicList)
+
+        assertEquals(
+            musicList,
+            player.getNextMusicQueue()
+        )
+    }
+
+    @Test
+    fun getNextMusicQueue_getNextMusicQueueWhenAMiddleQueueMusicPlaying_subQueueReturned() {
+        // create music queue and play one of them
+        val nowPlayingMusicIndex = 2
+        val musicList = mutableListOf<Music>()
+        repeat(5) { musicList.add(Music(it.toString())) }
+        player.setMusicQueue(musicList)
+        player.getMusicQueue()[nowPlayingMusicIndex].resume()
+
+        assertEquals(
+            musicList.subList(nowPlayingMusicIndex.plus(1), musicList.size),
+            player.getNextMusicQueue()
+        )
+    }
+
+    @Test
+    fun getNextMusicQueue_getNextMusicQueueWhenLastMusicPlaying_emptyListReturned() {
+        // create music queue and play one of them
+        val musicList = mutableListOf<Music>()
+        repeat(5) { musicList.add(Music(it.toString())) }
+        player.setMusicQueue(musicList)
+        player.getMusicQueue()[4].resume()
+
+        assertEquals(
+            mutableListOf<Music>(),
+            player.getNextMusicQueue()
+        )
+    }
 }

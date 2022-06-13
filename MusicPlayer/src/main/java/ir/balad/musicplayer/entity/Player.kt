@@ -21,7 +21,7 @@ class Player {
     fun getPlayingMusic() = musicQueue.find { it.state == Music.MusicState.PLAYING }
 
     /**
-     * @return the music queue after now playing music.
+     * @return the music queue after now playing music or if there is no playing music, the whole queue.
      *  Empty list if the playing music is the last music in the queue.
      */
     fun getNextMusicQueue() = try {
@@ -115,6 +115,7 @@ class Player {
      * @param time the time user wants to pause the music.
      *
      * @throws IllegalOperationException if no music was playing right now.
+     * @see Music.pause
      */
     fun pausePlayingMusic(time: Long) {
         val playingMusic =
@@ -129,6 +130,7 @@ class Player {
      * @param music the music user wants to resume.
      *
      * @throws IllegalOperationException if music queue did not contain the music.
+     * @see Music.resume
      */
     fun resumeMusic(music: Music): Long {
         if (musicQueue.contains(music).not())
@@ -142,6 +144,7 @@ class Player {
      * Stops the now playing music.
      *
      * @throws IllegalOperationException if no music was playing right now.
+     * @see Music.stop
      */
     fun stopPlayingMusic() {
         val playingMusic =
