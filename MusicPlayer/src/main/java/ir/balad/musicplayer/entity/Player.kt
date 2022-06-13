@@ -109,6 +109,46 @@ class Player {
         musicQueue.add(musicQueue.indexOf(playingMusic).plus(1), music)
     }
 
+    /**
+     * Pauses the now playing music.
+     *
+     * @param time the time user wants to pause the music.
+     *
+     * @throws IllegalOperationException if no music was playing right now.
+     */
+    fun pausePlayingMusic(time: Long) {
+        val playingMusic =
+            getPlayingMusic() ?: throw IllegalOperationException("No music is playing")
+
+        playingMusic.pause(time)
+    }
+
+    /**
+     * Resumes a music.
+     *
+     * @param music the music user wants to resume.
+     *
+     * @throws IllegalOperationException if music queue did not contain the music.
+     */
+    fun resumeMusic(music: Music): Long {
+        if (musicQueue.contains(music).not())
+            throw IllegalOperationException("Music queue does not contain this music")
+
+        return music.resume()
+    }
+
+    /**
+     * Stops the now playing music.
+     *
+     * @throws IllegalOperationException if no music was playing right now.
+     */
+    fun stopPlayingMusic() {
+        val playingMusic =
+            getPlayingMusic() ?: throw IllegalOperationException("No music is playing")
+
+        playingMusic.stop()
+    }
+
     /* Test Only functions */
 
     @TestOnly
